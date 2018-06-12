@@ -1,0 +1,17 @@
+{
+    "services": [
+        {
+            "name": "mcrouter-name",
+            "tags": [
+                "mcrouter"
+            ],
+            "port": 5000,
+            "checks": [
+                {
+                    "args": ["/etc/consul.d/scripts/mcrouter.sh"],
+                    "interval": "5s"
+                }
+            ]
+        }
+    ]
+}

@@ -5,23 +5,3 @@ sudo docker images
 2.  # Build a docker image if it does not already exist
 cd /opt/Docker
 sudo docker build --no-cache=true --tag mcrouter:0.36 .
-
-3. # Create container e.g., redis-test1
-sudo docker run -td -i -d -v /srv/mcrouter-test-1:/opt/mcrouter -v /proc:/writable-proc --sysctl net.core.somaxconn=4096 --hostname mcrouter-test-1 --name mcrouter-test-1 mcrouter:1.4.14 bash
-
-4.  # Bind IP address and change the interface from em1 to that of the docker host appropriately.  
-sudo pipework eno1 mcrouter-test-1 ip_address/23@10.1.5.254
-
-5. # Enter docker container
-sudo docker exec -it mcrouter-test-1 bash
-
-6. # Change the following config files for redis:
-vim /etc/mcrouter.conf               # change "-m" according to your requirements
-
-# Change config in the following files for Consul:
-vim /etc/consul.d/services.json         # change name for redis instance e.g., memcache-mybox
-
-# Start Services
-service mcrouter start
-/etc/init.d/rsyslog start
-

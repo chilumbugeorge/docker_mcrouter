@@ -17,7 +17,8 @@ cd /opt
 git clone git@github.com:chilumbugeorge/docker_mcrouter.git
 ``` 
 
-**2. Update the mcrouter config files /opt/docker_mcrouter/mcrouter/*, e.g, change the config file names to reflect the names of your memcached servers (containers). So for example, this package aims to create two memcached sets or farms namely memcached-general and memcache-session, hence the naming of the config files reflects that. Also, update the IPs inside the config files to reflect those of your memcached servers in each of your memcached sets. 
+**2. Update mcrouter config files** 
+Update the mcrouter config files /opt/docker_mcrouter/mcrouter/*, e.g, change the config file names to reflect the names of your memcached servers (containers). So for example, this package aims to create two memcached sets or farms namely memcached-general and memcache-session, hence the naming of the config files reflects that. Also, update the IPs inside the config files to reflect those of your memcached servers in each of your memcached sets. 
 
 **3. Create mcrouter docker image**
 ```

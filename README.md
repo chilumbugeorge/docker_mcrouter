@@ -1,4 +1,6 @@
 # docker_mcrouter
+Author: George Chilumbu
+
 Docker package for creating docker image and containers for mcrouter, a routing solution for memcached. I have created this package to simply and speed up the process of recreating docker containers during upgrades or maintenace. For instance, if you have about 6 docker hosts each with about 10-15 containers for different mcrouter for different teams/functions, trying to upgrade or performan some kind of maintence would take us about 2 days. With this package and the scripts included, the process has been cut to minutes.
 
 **File structure***

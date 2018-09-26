@@ -1,3 +1,3 @@
-mcrouter-test-1=192.168.2.100
-mcrouter-example-1=192.168.2.120
-mcrouter-likes-1=192.168.2.133
+mcrouter-session-1=192.168.2.100
+mcrouter-notifications-1=192.168.2.120
+mcrouter-general-1=192.168.2.133

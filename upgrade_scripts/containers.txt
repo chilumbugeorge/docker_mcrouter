@@ -1,3 +1,0 @@
-mcrouter-session-1=10.1.9.100
-mcrouter-shared-1=10.1.9.101
-mcrouter-general-1=10.1.9.102

@@ -29,8 +29,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     telnet \
     xinetd \
+    netcat \
     telnet
 
+RUN apt-get -y update
 RUN apt-get -y upgrade
 
 RUN add-apt-repository ppa:gaod/mcrouter \
@@ -40,14 +42,9 @@ RUN add-apt-repository ppa:gaod/mcrouter \
    
 COPY mcrouter/mcrouter.conf /etc/mcrouter.conf
 
-## INSTALL and setup redis_exporter
-
-## INSTALL and setup node_exporter. Down from https://github.com/prometheus/node_exporter/releases
-RUN wget https://github.com/prometheus/node_exporter/releases/download/v0.15.2/node_exporter-0.15.2.linux-amd64.tar.gz
-RUN tar zxf node_exporter-0.15.2.linux-amd64.tar.gz -C /opt/
 
 ## INSTALL and setup consul
-RUN wget https://releases.hashicorp.com/consul/1.0.6/consul_1.0.6_linux_amd64.zip
+RUN wget https://releases.hashicorp.com/consul/1.2.2/consul_1.2.2_linux_amd64.zip
 RUN unzip consul_*
 RUN rm consul_*
 RUN mv consul /usr/local/bin

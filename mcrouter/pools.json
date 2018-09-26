@@ -1,0 +1,17 @@
+{
+   "A":{
+      "servers":[
+         "mem_server1_ip:11211"
+      ]
+   },
+   "B":{
+      "servers":[
+         "mem_server2_ip:11211"
+      ]
+   },
+   "C":{
+      "servers":[
+         "mem_server3_ip:11211"
+      ]
+   }
+}

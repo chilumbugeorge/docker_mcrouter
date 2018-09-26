@@ -1,0 +1,63 @@
+{
+   "macros":{
+      "all-pools":{
+         "type":"constDef",
+         "result":"@import(pools.json)"
+      },
+      "pool-routes":{
+         "type":"constDef",
+         "result":{
+            "type":"foreach",
+            "from":"@sort(@keys(%all-pools%))",
+            "use":[
+               "PoolRoute|%item%"
+            ]
+         }
+      },
+      "failover-cnt":{
+         "type":"constDef",
+         "result":{
+            "type":"if",
+            "condition":"@less(@size(%pool-routes%), @int(3))",
+            "is_true":"@size(%pool-routes%)",
+            "is_false":3
+         }
+      },
+      "shiftedPoolRoutes":{
+         "type":"macroDef",
+         "params":[
+            "shift"
+         ],
+         "result":{
+            "type":"foreach",
+            "from":"@range(@int(0), @sub(%failover-cnt%, @int(1)))",
+            "use":[
+               "@select(%pool-routes%, @mod(@add(%shift%, %item%), @size(%pool-routes%)))"
+            ]
+         }
+      }
+   },
+   "pools":"%all-pools%",
+   "route":{
+      "type":"OperationSelectorRoute",
+      "default_policy":{
+         "type":"AllFastestRoute",
+         "children":"%pool-routes%"
+      },
+      "operation_policies":{
+          "get":{
+            "type":"RandomRoute",
+            "children":{
+               "type":"foreach",
+               "from":"@range(@int(0), @sub(@size(%all-pools%), @int(1)))",
+               "use":[
+                  {
+                     "type":"MissFailoverRoute",
+                     "children":"@shiftedPoolRoutes(%item%)"
+                  }
+               ]
+            }
+         }
+      }
+   }
+}

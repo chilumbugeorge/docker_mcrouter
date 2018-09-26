@@ -1,1 +1,1 @@
-mcrouter-feed-3=10.1.24.56
+mcrouter-test-1=192.168.2.100
